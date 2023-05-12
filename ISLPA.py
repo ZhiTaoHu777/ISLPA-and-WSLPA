@@ -1,19 +1,6 @@
 import collections
 import numpy as np
 import networkx as nx
-import EQ
-# from Community_Detection import Util
-
-"""异步SLPA自改版本
-    SLPA算法具有极大的随机性，主要体现在遍历顺序和标签选择上
-    改进思路:1.对于节点标签内存的初始化和听者顺序遍历，用节点重要性指标确定听者顺序，节点越重要往往具有越大的影响力，可以参考ELPA的初始化过程或者模块度粗聚类
-            2.对于邻居节点选取内存中出现次数最多的标签进行传播，然后听者选取邻居中传来的最多的标签，总感激哪里不太合理。直接选出最大的最多的进行同质化未免损失太大
-            个人感觉这是一个节点通过结构与周围节点进行同质化的过程，传播的内容应该是内存中各种标签出现的概率，至于听取，需要完成同质化，要进行一个类似池化一样的操作，
-            在想有没有与贝叶斯公式结合的可能。
-            3.在删除标签的时候，有些节点的所有标签都会被删掉，阈值很难确定。
-            4.需要加上收敛性的判断
-"""
-
 
 # SLPA 改进第一版本，度顺序邻接序列排序，使用jaccard相似性进行选择
 class ISLPA:
@@ -67,7 +54,7 @@ class ISLPA:
                 # selected_label = max(label_list, key=label_list.get)
                 # 如果流行程度相同，使用jaccad进行判断
                 candidate_list = [item[0] for item in label_list.items() if item[1] == max_v]
-                max_index = self.jaccard_index1(i, candidate_list)
+                max_index = self.jaccard_index(i, candidate_list)
                 # selected_label = random.choice([item[0] for item in label_list.items() if item[1] == max_v])
                 selected_label = candidate_list[max_index]
                 # setdefault如果键不存在于字典中，将会添加键并将值设为默认值。
@@ -122,7 +109,7 @@ class ISLPA:
         # 返回值是个数据字典，value以集合的形式存在
         return C
 
-    def jaccard_index(self, n, l):
+    def ra_index(self, n, l):
         index = 0
         max_ra = 0
         for i in range(len(l)):
@@ -136,7 +123,7 @@ class ISLPA:
                 index = i
         return index
 
-    def jaccard_index1(self, n, l):
+    def jaccard_index(self, n, l):
         index = 0
         max_jarccard = 0
         for i in range(len(l)):
@@ -148,15 +135,7 @@ class ISLPA:
                 index = i
         return index
 
-# if __name__  == "__main__":
-#     G = Util.load_G(r"D:\pycharm\PythonProject\ConplexNetWork\Community_Detection\Data\follow.csv")
-#     nx.draw(G,pos=nx.drawing.spring_layout(G))
-#     print("Load Success!")
-#     s = ISLPA(G,20,0.1)
-#     r = s.execute()
-#     print("r",r)
-#     print("EQ",EQ.cal_EQ(r, G))
-#     Util.showCommunity(G,r,pos=nx.drawing.spring_layout(G))
+
 
 
 

@@ -3,9 +3,6 @@ import numpy as np
 import networkx as nx
 import pandas as pd
 
-from Community_Detection import Util
-from Community_Detection.Util import load_weighted_Gragh
-
 """加权SLPA
 """
 
@@ -103,11 +100,3 @@ class WSLPA:
         for c in add:
             C.append(c)
         return C
-
-
-
-if __name__ == '__main__':
-    G = load_weighted_Gragh()
-    s = WSLPA(G,20,0.1)
-    c = s.execute()
-    print(c)

@@ -15,11 +15,13 @@ It is worth mentioning that the division of overlapping communities drawn by the
 ## reference
 if you use SLPA_v0, please cite:
 >Xie J, Szymanski B K. Towards linear time overlapping community detection in social networks[C]//Pacific-Asia Conference on Knowledge Discovery and Data Mining. Springer, Berlin, Heidelberg, 2012: 25-36.
+
 if you use ISLPA, please cite:""
 if you use WSLPA, Please cite:""
 
 if you use extended Modularity,please cite：
 > Shen H, Cheng X, Cai K, et al. Detect overlapping and hierarchical community structure in networks[J]. Physica A: Statistical Mechanics and its Applications, 2009, 388(8): 1706-1712.
+
 if you use overlapping nmi,Please refer to https://github.com/aaronmcdaid/Overlapping-NMI the reference mentioned, and thank the author *Remy Cazabet for contributing the code.
 
 
